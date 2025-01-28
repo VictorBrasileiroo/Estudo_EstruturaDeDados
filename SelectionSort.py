@@ -17,6 +17,5 @@ def SelectionSort(arr):
         (arr[j],arr[lowerValue]) = (arr[lowerValue],arr[j])
 
 array = [21,2323,56,3,666,1,0.5,2]
-
 SelectionSort(array)
 print(array)
