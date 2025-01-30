@@ -27,11 +27,11 @@ Os códigos são escritos principalmente em **C e Python**.
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/estrutura-dados-algoritmos.git
+   git clone https://github.com/VictorBrasileiroo/EstruturaDeDados_Algoritmos.git
    ```
 2. Acesse o diretório desejado:
    ```bash
-   cd estrutura-dados-algoritmos
+   cd EstruturaDeDados_Algoritmos
    ```
 3. Compile e execute os programas (para C):
    ```bash
