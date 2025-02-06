@@ -15,7 +15,7 @@ int ValidacaoNome(char nome[], int inicio, int fim) {
             if (nome[inicio] == ' ') {
                 if (!ValidacaoInicioNome(nome, inicio + 1)) {
                     return 0;
-                }
+            }
             } else if ((nome[inicio] < 'a' || nome[inicio] > 'z') && (nome[inicio] < 'A' || nome[inicio] > 'Z')) {
                 return 0;
             } else if (nome[inicio] >= 'A' && nome[inicio] <= 'Z' && nome[inicio - 1] != ' ') {
