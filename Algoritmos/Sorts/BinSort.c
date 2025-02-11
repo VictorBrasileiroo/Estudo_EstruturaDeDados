@@ -1,18 +1,16 @@
 #include <stdio.h>
 
 void BinSort(int* arr, int tam, int i) {
-    if (i >= tam) {
-        return;
+    while (i < tam) {  
+        if (arr[i] == i + 1) {  // + 1 pois começa em 0
+            i++;
+        } else {
+            int t = arr[i] - 1;  // - 1 pois o indice vai de 0 a 4 (ex)
+            int temp = arr[i];
+            arr[i] = arr[t];
+            arr[t] = temp;
+        }
     }
-
-    // Coloca arr[i] na posição correta, se possível
-    while (arr[i] != i && arr[i] < tam) {
-        int t = arr[i];
-        arr[i] = arr[t];
-        arr[t] = t;
-    }
-
-    BinSort(arr, tam, i + 1);
 }
 
 int main() {
@@ -24,4 +22,7 @@ int main() {
     for (int i = 0; i < tamanho; i++) {
         printf("%d ", arr[i]);
     }
+    printf("\n");
+
+    return 0;
 }
