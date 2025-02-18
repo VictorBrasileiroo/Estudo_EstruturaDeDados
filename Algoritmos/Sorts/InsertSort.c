@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+//for para analisar todos os elementos --> 0 até o ultimo
+    //crio um j que sempre analisa o posterior de i 
+    //enquanto a posição atual for maior do que a posição anterior e maior que zero 
+        // --> ele vai trocar com o elemento anterior e diminuir em um
+
 void InsertSort(int* arr, int tam){
     for(int i = 0; i <= tam; i++){
         int j = i + 1;
