@@ -2,13 +2,24 @@
 #include <math.h>
 #include <stdlib.h>
 
+//Como funciona o algoritmo de alocação de gaps
+//1. primeiro vamos criar um array para armazenar os gaps --> ex: distancia[2,2,4] 
+//2. após isso vamos calcular a distancia entre números
+//3. calculamos quantos gaps existem --> por isso precisa fazer um acumulador de gaps 
+//4. calculamos o novo tamanho do array --> tamanho original + qnt de gaps
+//5. alocamos memória com o calloc para criar o array que iniciará com 0 nas posições 
+//6. colocamos os elementos em suas devidas posições --> distancias corretas entre eles e zeros entre os elementos
+//7. fazemos a transformação do arr original no arr com gaps
+//8. liberamos o espaço de memória do arr dos gaps
+//9. retornando o tamanho do array ordenado e com gaps
+
 int addGaps(int* arr, int tam){
     int distancia[tam-1];  
     for(int i = 0; i < tam-1; i++){
         if(arr[i] == arr[i+1]){
             distancia[i] = 0; 
         }else{
-            distancia[i] = abs(arr[i] - arr[i+1]) - 1;  
+            distancia[i] = (arr[i + 1] - arr[i]) - 1;  
         }
     }
 
@@ -42,8 +53,8 @@ int bubbleSort(int* arr, int tam){
         }
     }
 
-    int tamGap = addGaps(arr,tam);
-    return tamGap;
+    int tamArr = addGaps(arr,tam);
+    return tamArr;
 }
 
 void printArray(int arr[], int size) {
