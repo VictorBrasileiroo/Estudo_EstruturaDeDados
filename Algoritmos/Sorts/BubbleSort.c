@@ -26,3 +26,22 @@ int main(){
 
     printf("QNT DE OPERAÇÕES: %d", qnt);
 }
+
+int inserirValor(double* arr, int tam, double value){
+    for(int i = 0; i < tam; i++){
+        if(arr[i] < value && arr[i+1] == 0){
+            arr[i+1] = value;
+        }
+    }
+
+    int newTam = addGaps(arr,tam);
+    return newTam;
+}
+
+void removerValor(double* arr, int tam, double value){
+    for(int i = 0; i < tam; i++){
+        if(arr[i] == value){
+            arr[i] = 0;
+        }
+    }
+}

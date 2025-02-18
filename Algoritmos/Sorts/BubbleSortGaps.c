@@ -1,17 +1,5 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
-
-//Como funciona o algoritmo de alocação de gaps
-//1. primeiro vamos criar um array para armazenar os gaps --> ex: distancia[2,2,4] 
-//2. após isso vamos calcular a distancia entre números
-//3. calculamos quantos gaps existem --> por isso precisa fazer um acumulador de gaps 
-//4. calculamos o novo tamanho do array --> tamanho original + qnt de gaps
-//5. alocamos memória com o calloc para criar o array que iniciará com 0 nas posições 
-//6. colocamos os elementos em suas devidas posições --> distancias corretas entre eles e zeros entre os elementos
-//7. fazemos a transformação do arr original no arr com gaps
-//8. liberamos o espaço de memória do arr dos gaps
-//9. retornando o tamanho do array ordenado e com gaps
 
 int addGaps(int* arr, int tam){
     int distancia[tam-1];  
@@ -19,7 +7,7 @@ int addGaps(int* arr, int tam){
         if(arr[i] == arr[i+1]){
             distancia[i] = 0; 
         }else{
-            distancia[i] = (arr[i + 1] - arr[i]) - 1;  
+            distancia[i] = arr[i + 1] - arr[i] - 1;  
         }
     }
 
@@ -67,6 +55,25 @@ void printArray(int arr[], int size) {
     }
 }
 
+int inserirValor(int* arr, int tam, int value){
+    for(int i = 0; i < tam; i++){
+        if(arr[i] < value && arr[i+1] == 0){
+            arr[i+1] = value;
+        }
+    }
+
+    int newTam = addGaps(arr,tam);
+    return newTam;
+}
+
+void removerValor(int* arr, int tam, int value){
+    for(int i = 0; i < tam; i++){
+        if(arr[i] == value){
+            arr[i] = 0;
+        }
+    }
+}
+
 int main(){
     int arr[999];
     int qntnums;
@@ -79,6 +86,18 @@ int main(){
     int tamanhoNovo = bubbleSort(arr,qntnums);
     printf("ARRAY ORDENADO:\n");
     printArray(arr, tamanhoNovo);
-    
+
+    int valorInserido;
+    printf("DIGITE O VALOR A SER INSERIDO:\n");
+    scanf("%d", &valorInserido);
+    int newTam = inserirValor(arr,tamanhoNovo,valorInserido);
+    printArray(arr,newTam);
+
+    int valorInserido2;
+    printf("DIGITE O VALOR A SER ELIMINADO:\n");
+    scanf("%d", &valorInserido2);
+    removerValor(arr,tamanhoNovo,valorInserido2);
+    printArray(arr,newTam);
+
     return 0;
 }
