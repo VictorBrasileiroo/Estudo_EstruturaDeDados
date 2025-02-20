@@ -8,7 +8,6 @@ void QuickSort(int* arr,int left,int right){
         QuickSort(arr,left,pivot-1);
         QuickSort(arr,pivot+1,right);
     }
-    return arr;
 }
 
 int Particion(int* arr,int left,int right){
@@ -28,4 +27,21 @@ int Particion(int* arr,int left,int right){
     arr[right] = temp;
 
     return i + 1;
+}
+
+int main(){
+    int arr[] = {22,3,5,232,11,22};
+    int tam = sizeof(arr)/sizeof(arr[0]);
+    for (int i = 0; i < tam; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    QuickSort(arr,0,tam-1);
+    for (int i = 0; i < tam; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
 }
