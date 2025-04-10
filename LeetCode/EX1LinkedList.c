@@ -66,6 +66,17 @@ void exibirElementos(Node** cabeca){
     }
 }
 
+void AddBegginEof(Node** head){
+    int element;
+    while (scanf("%d", &element) != EOF)
+    {
+        Node* newNode = CreateNode(element);
+        newNode->prox = *head;
+        *head = newNode;
+    }
+    
+}
+
 void inverterLista(Node** head){
     Node* atual = *head;
     Node* anterior = NULL;
@@ -79,6 +90,28 @@ void inverterLista(Node** head){
         atual = proximo;
     }
     
+}
+
+void AddFimEof(Node **head)
+{
+    int element;
+    while (scanf("%d", &element) != EOF)
+    {
+        Node *newNode = CriarNo(element);
+        if (*head == NULL)
+        {
+            *head = newNode;
+        }
+        else
+        {
+            Node *temp = *head;
+            while (temp->prox != NULL)
+            {
+                temp = temp->prox;
+            }
+            temp->prox = newNode;
+        }
+    }
 }
 
 int main(){
