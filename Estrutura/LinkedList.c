@@ -21,6 +21,20 @@ void AddInicio(Node** head, int element) {
     *head = novo;
 }
 
+void addFim(Node** head, int element){
+    Node* novoNo = CriarNo(element);
+    if(head == NULL){
+        *head = novoNo;
+    }else{
+        Node* temp = head;
+        while (temp->prox != NULL)
+        {
+            temp = temp->prox;
+        }
+        temp->prox = novoNo;
+    } 
+}
+
 // Exibe os elementos da lista
 void ExibirElementos(Node* head) {
     Node* temp = head;
@@ -70,6 +84,48 @@ void LiberarLista(Node** head) {
     }
 }
 
+void inserirLocal(Node** head, int element, int pos){
+    Node* novoNo = CriarNo(element);
+    if(*head == NULL || pos == 0){
+        novoNo->prox = *head;
+        *head = novoNo;
+        return;
+    }
+    
+        Node* t = *head;
+        int i = 0;
+
+        while (i < pos - 1 && t != NULL)
+        {
+           t = t->prox;
+           i++;
+        }
+
+        novoNo->prox = t->prox;
+        t->prox = novoNo;
+}
+
+void Buscar(Node* head, int element){
+    while (head != NULL)
+    {
+        if(head->valor == element){
+            return 1;
+        }
+        head = head->prox;
+    }
+    return 0;
+}
+
+int Tamanho(Node* head){
+    int i = 0;
+    while (head != NULL)
+    {
+        head = head->prox;
+        i++;
+    }
+    return i;
+}
+
 int main() {
     Node* cabeca1 = NULL;
     Node* cabeca2 = NULL;
@@ -95,5 +151,17 @@ int main() {
     Node* cabeca3 = ConcatenarListas(cabeca1, cabeca2);
     printf("\nLista concatenada:\n");
     ExibirElementos(cabeca3);
+
+    addFim(&cabeca3,3);
+    addFim(&cabeca3,12);
+    addFim(&cabeca3,21);
+
+    ExibirElementos(cabeca3);
+
+    inserirLocal(&cabeca3, 399,2);
+
+    ExibirElementos(cabeca3);
+
+    printf("TAMANHO DA LISTA 3: %d", Tamanho(cabeca3));
     return 0;
 }
