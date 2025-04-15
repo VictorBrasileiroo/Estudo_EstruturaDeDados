@@ -1,127 +1,99 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node
-{
+typedef struct node {
     int valor;
-    struct Node *prox; 
-}Node;
+    struct node* prox;
+} Node;
 
-Node* CriarNo(int valor){
-    Node* novoNo = (Node*)malloc(sizeof(Node));
-    if(novoNo == NULL) exit(1);
-    novoNo->valor = valor;
-    novoNo->prox = NULL;
-    return novoNo;
+// Cria um novo nó com valor
+Node* CriarNo(int element) {
+    Node* novo = (Node*)malloc(sizeof(Node));
+    novo->valor = element;
+    novo->prox = NULL;
+    return novo;
 }
 
-void AddInicio(Node** cabeca, int valor){
-    Node* novono = CriarNo(valor);
-    novono->prox = *cabeca;
-    *cabeca = novono;
+// Insere um elemento no início da lista
+void AddInicio(Node** head, int element) {
+    Node* novo = CriarNo(element);
+    novo->prox = *head;
+    *head = novo;
 }
 
-void AddFim(Node** cabeca, int valor){
-    Node* novono = CriarNo(valor);
-    if(*cabeca == NULL){
-        *cabeca = novono;
-    }else{
-        Node* temp = *cabeca;
-        while (temp->prox != NULL)
-        {
-            temp = temp->prox;
-        }
-        temp->prox = novono;
+// Exibe os elementos da lista
+void ExibirElementos(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->valor);
+        temp = temp->prox;
     }
+    printf("NULL\n");
 }
 
-void RemoverElemento(Node** cabeca, int valor){
-    Node* temp = *cabeca;
+// Inverte a lista ligada
+void InverterLista(Node** head) {
     Node* anterior = NULL;
-
-    if(temp != NULL && temp->valor == valor){
-        *cabeca = temp->prox;
-        free(temp);
-        return;
-    }
-
-    while (temp != NULL && temp->valor != valor)
-    {
-        anterior = temp;
-        temp = temp->prox;
-    }
-
-    if(temp == NULL) return;
-
-    anterior->prox = temp->prox;
-    free(temp);
-}
-
-void exibirElementos(Node** cabeca){
-    Node* temp = *cabeca;
-    while (temp != NULL)
-    {
-        printf("%d --> ", temp->valor);
-        temp = temp->prox;
-    }
-}
-
-void AddBegginEof(Node** head){
-    int element;
-    while (scanf("%d", &element) != EOF)
-    {
-        Node* newNode = CreateNode(element);
-        newNode->prox = *head;
-        *head = newNode;
-    }
-    
-}
-
-void inverterLista(Node** head){
     Node* atual = *head;
-    Node* anterior = NULL;
     Node* proximo = NULL;
 
-    while (atual != NULL)
-    {
+    while (atual != NULL) {
         proximo = atual->prox;
         atual->prox = anterior;
         anterior = atual;
         atual = proximo;
     }
-    
+
+    *head = anterior;
 }
 
-void AddFimEof(Node **head)
-{
-    int element;
-    while (scanf("%d", &element) != EOF)
-    {
-        Node *newNode = CriarNo(element);
-        if (*head == NULL)
-        {
-            *head = newNode;
-        }
-        else
-        {
-            Node *temp = *head;
-            while (temp->prox != NULL)
-            {
-                temp = temp->prox;
-            }
-            temp->prox = newNode;
-        }
+// Concatena duas listas e retorna a nova cabeça
+Node* ConcatenarListas(Node* cabeca1, Node* cabeca2) {
+    if (cabeca1 == NULL) return cabeca2;
+
+    Node* temp = cabeca1;
+    while (temp->prox != NULL) {
+        temp = temp->prox;
+    }
+    temp->prox = cabeca2;
+    return cabeca1;
+}
+
+
+// Libera memória da lista
+void LiberarLista(Node** head) {
+    Node* temp;
+    while (*head != NULL) {
+        temp = *head;
+        *head = (*head)->prox;
+        free(temp);
     }
 }
 
-int main(){
-    Node* cabeca = NULL;
-    AddInicio(&cabeca,8);
-    AddInicio(&cabeca,5);
-    AddFim(&cabeca,2);
-    exibirElementos(&cabeca);
-    printf("\n");
-    RemoverElemento(&cabeca,8);
-    exibirElementos(&cabeca);
+int main() {
+    Node* cabeca1 = NULL;
+    Node* cabeca2 = NULL;
+
+    // Exemplo de preenchimento
+    AddInicio(&cabeca1, 1);
+    AddInicio(&cabeca1, 3);
+    AddInicio(&cabeca1, 2);
+    AddInicio(&cabeca1, 0);
+    AddInicio(&cabeca1, 4);
+
+    AddInicio(&cabeca2, 1);
+    AddInicio(&cabeca2, 5);
+    AddInicio(&cabeca2, 7);
+
+    printf("Lista 1:\n");
+    ExibirElementos(cabeca1);
+
+    printf("\nLista 2:\n");
+    ExibirElementos(cabeca2);
+
+    // Concatena as listas
+    Node* cabeca3 = ConcatenarListas(cabeca1, cabeca2);
+    printf("\nLista concatenada:\n");
+    ExibirElementos(cabeca3);
     return 0;
 }
