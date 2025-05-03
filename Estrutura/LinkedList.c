@@ -127,41 +127,5 @@ int Tamanho(Node* head){
 }
 
 int main() {
-    Node* cabeca1 = NULL;
-    Node* cabeca2 = NULL;
-
-    // Exemplo de preenchimento
-    AddInicio(&cabeca1, 1);
-    AddInicio(&cabeca1, 3);
-    AddInicio(&cabeca1, 2);
-    AddInicio(&cabeca1, 0);
-    AddInicio(&cabeca1, 4);
-
-    AddInicio(&cabeca2, 1);
-    AddInicio(&cabeca2, 5);
-    AddInicio(&cabeca2, 7);
-
-    printf("Lista 1:\n");
-    ExibirElementos(cabeca1);
-
-    printf("\nLista 2:\n");
-    ExibirElementos(cabeca2);
-
-    // Concatena as listas
-    Node* cabeca3 = ConcatenarListas(cabeca1, cabeca2);
-    printf("\nLista concatenada:\n");
-    ExibirElementos(cabeca3);
-
-    addFim(&cabeca3,3);
-    addFim(&cabeca3,12);
-    addFim(&cabeca3,21);
-
-    ExibirElementos(cabeca3);
-
-    inserirLocal(&cabeca3, 399,2);
-
-    ExibirElementos(cabeca3);
-
-    printf("TAMANHO DA LISTA 3: %d", Tamanho(cabeca3));
     return 0;
 }

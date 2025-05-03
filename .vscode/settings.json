@@ -2,6 +2,7 @@
     "files.associations": {
         "*.js": "javascriptreact",
         "stdio.h": "c",
-        "AB1BUBBLE.C": "cpp"
+        "AB1BUBBLE.C": "cpp",
+        "stdlib.h": "c"
     }
 }
